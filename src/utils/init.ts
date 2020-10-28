@@ -7,8 +7,6 @@ export default function initCheck(): { input: string; output: string } {
 
   const flags = args.parse(process.argv);
 
-  console.log('args are', flags);
-
   const input = flags.in;
   const output = flags.out;
 
