@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "checkExample": "node .S/build/index.js input.txt output.txt",
+    "checkExample": "node ./build/index.js input.txt output.txt",
     "start": "npm run build && npm run checkExample",
     "test": "jest",
     "lint": "eslint ./src/**",
