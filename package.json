@@ -35,7 +35,8 @@
     "check": "npm run build && node $npm_package_main --in $npm_config_in --out $npm_config_out",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore 'src/**/*.ts'",
-    "lint:fix": "eslint --ignore-path .gitignore 'src/**/*.ts' --fix"
+    "lint:fix": "eslint --ignore-path .gitignore 'src/**/*.ts' --fix",
+    "prettier": "npx prettier --write 'src/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -60,7 +61,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run prettier && npm run lint:fix"
     }
   },
   "jest": {
