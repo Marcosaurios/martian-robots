@@ -1,17 +1,15 @@
 // Entry point of the program
 import initCheck from './utils/init';
-import readFile from './utils/file';
+import readInstructions from './mars';
 
 function main() {
   // Sanitize input and output
-  const { input, output } = initCheck(process.argv.slice(2));
+  const { input, output } = initCheck();
 
   console.log('Input is ', input);
   console.log('Output is ', output);
 
-  const file = readFile(input);
-
-  console.log(file);
+  readInstructions(input);
 
   // Initialize map
 

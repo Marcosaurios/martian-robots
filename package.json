@@ -2,8 +2,11 @@
   "name": "martian-robots",
   "version": "1.0.0",
   "description": "Code challenge for GuideSmiths",
-  "main": "index.js",
-  "dependencies": {},
+  "main": "build/index.js",
+  "dependencies": {
+    "@types/args": "^3.0.0",
+    "args": "^5.0.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -25,8 +28,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "checkExample": "node ./build/index.js input.txt output.txt",
+    "checkExample": "node $npm_package_main --in input.txt --out output.txt",
     "start": "npm run build && npm run checkExample",
+    "check": "npm run build && node $npm_package_main --in $npm_config_in --out $npm_config_out",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore 'src/**/*.ts'",
     "lint:fix": "eslint --ignore-path .gitignore 'src/**/*.ts' --fix"

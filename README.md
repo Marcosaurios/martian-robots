@@ -2,7 +2,9 @@
 
 Code challenge. Let's do it!
 
-`npm i` to install dependencies. `npm run start` to build and run the simplest example.
+`npm i` to install dependencies.
+`npm run start` to build and run the simplest example.
+`npm run check --in=inpat.txt --out=outpat.txt` to provide a custom input and output files.
 
 ## **Technologies used (why/how)**
 
