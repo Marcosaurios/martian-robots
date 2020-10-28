@@ -28,8 +28,8 @@
     "checkExample": "node ./build/index.js input.txt output.txt",
     "start": "npm run build && npm run checkExample",
     "test": "jest",
-    "lint": "eslint ./src/**",
-    "lint:fix": "eslint ./src/** --fix"
+    "lint": "eslint --ignore-path .gitignore 'src/**/*.ts'",
+    "lint:fix": "eslint --ignore-path .gitignore 'src/**/*.ts' --fix"
   },
   "repository": {
     "type": "git",
