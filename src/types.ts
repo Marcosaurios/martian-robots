@@ -13,13 +13,17 @@ enum Movement {
   L,
 }
 
+interface MarsPosition {
+  x: number;
+  y: number;
+  head: Orientation;
+  alive: boolean;
+}
+
 interface Robot {
-  initialPosition: {
-    x: number;
-    y: number;
-    head: Orientation;
-  };
+  initialPosition: MarsPosition;
+  actualPosition: MarsPosition;
   instructions: Movement[];
 }
 
-export { Orientation, Movement, Robot };
+export { Orientation, Movement, MarsPosition, Robot };
