@@ -87,8 +87,24 @@ export default class Mars {
     return value;
   }
 
-    }
-  }
+  killRobot(robot: Robot): Robot {
+    // create deep copy
+    const deadRobot: Robot = {
+      ...robot,
+      actualPosition: {
+        ...robot.actualPosition,
+        alive: false,
+      },
+    };
 
-  // executeNextMovement(move: Movement) {}
+    const gridPos = this.toMarsCoordinates({
+      x: deadRobot.actualPosition.x,
+      y: deadRobot.actualPosition.y,
+    });
+
+    // set scent in map
+    this.map[gridPos.y][gridPos.x] = 1;
+
+    return deadRobot;
+  }
 }
