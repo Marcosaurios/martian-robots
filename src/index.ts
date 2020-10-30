@@ -11,8 +11,6 @@ function main() {
   planet.startExploration();
 
   planet.writeOutput(output);
-
-  console.log(planet.getOutput());
 }
 
 main();
