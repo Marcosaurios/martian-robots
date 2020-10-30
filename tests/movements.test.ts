@@ -1,0 +1,160 @@
+import Controls from '../src/controls';
+import Mars from '../src/mars';
+import { MarsPosition, Movement, Orientation, Robot } from '../src/types';
+
+// TODO FIX
+
+describe('movements: should check next invalid movement successfuly', () => {
+  test('checkBoundings invalid next position top-right', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const move: Movement = Movement.F;
+    const actualPosition: MarsPosition = {
+      x: 5,
+      y: 3,
+      head: Orientation.N,
+      alive: true,
+    };
+
+    expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
+  });
+  test('checkBoundings invalid next position top-left', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const move: Movement = Movement.F;
+    const actualPosition: MarsPosition = {
+      x: 0,
+      y: 3,
+      head: Orientation.W,
+      alive: true,
+    };
+
+    expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
+  });
+  test('checkBoundings invalid next position bottom-left', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const move: Movement = Movement.F;
+    const actualPosition: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.S,
+      alive: true,
+    };
+
+    expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
+  });
+  test('checkBoundings invalid next position bottom-right', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const move: Movement = Movement.F;
+    const actualPosition: MarsPosition = {
+      x: 5,
+      y: 0,
+      head: Orientation.E,
+      alive: true,
+    };
+
+    expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
+  });
+});
+
+describe('movements: should check next valid movement successfuly', () => {
+  test('checkBoundings valid next position bottom-left', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const move: Movement = Movement.F;
+    const actualPosition: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.N,
+      alive: true,
+    };
+
+    expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(true);
+  });
+});
+
+describe('movements: killRobot should kill the robot', () => {
+  test('should be killed when moving out of bounds 0,0,S move F', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const robot: Robot = {
+      initialPosition: {
+        x: 0,
+        y: 0,
+        head: Orientation.S,
+        alive: true,
+      },
+      actualPosition: {
+        x: 0,
+        y: 0,
+        head: Orientation.S,
+        alive: true,
+      },
+      instructions: [],
+    };
+
+    const expected: Robot = {
+      initialPosition: {
+        x: 0,
+        y: 0,
+        head: Orientation.S,
+        alive: true,
+      },
+      actualPosition: {
+        x: 0,
+        y: 0,
+        head: Orientation.S,
+        alive: false,
+      },
+      instructions: [],
+    };
+
+    expect(mars.killRobot(robot)).toEqual(expected);
+  });
+  test('should be killed when moving out of bounds 0,0,S move F', () => {
+    const mars = new Mars('input.txt');
+    // size of 5,3
+
+    const robot: Robot = {
+      initialPosition: {
+        x: 5,
+        y: 3,
+        head: Orientation.N,
+        alive: true,
+      },
+      actualPosition: {
+        x: 5,
+        y: 3,
+        head: Orientation.N,
+        alive: true,
+      },
+      instructions: [],
+    };
+
+    const expected: Robot = {
+      initialPosition: {
+        x: 5,
+        y: 3,
+        head: Orientation.N,
+        alive: true,
+      },
+      actualPosition: {
+        x: 5,
+        y: 3,
+        head: Orientation.N,
+        alive: false,
+      },
+      instructions: [],
+    };
+
+    expect(mars.killRobot(robot)).toEqual(expected);
+  });
+});
