@@ -145,4 +145,18 @@ export default class Mars {
 
     return deadRobot;
   }
+
+  getOutput(): string {
+    let output = '';
+    for (let i = 0; i < this.robots.length; i += 1) {
+      const robot = this.robots[i].actualPosition;
+      output += `${robot.x} ${robot.y} ${Orientation[robot.head]}${
+        robot.alive ? '' : ' LOST'
+      }`;
+      if (i !== this.robots.length - 1) {
+        output += '\n';
+      }
+    }
+    return output;
+  }
 }
