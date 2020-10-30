@@ -2,8 +2,6 @@ import Controls from '../src/controls';
 import Mars from '../src/mars';
 import { MarsPosition, Movement, Orientation, Robot } from '../src/types';
 
-// TODO FIX
-
 describe('movements: should check next invalid movement successfuly', () => {
   test('checkBoundings invalid next position top-right', () => {
     const mars = new Mars('input.txt');
