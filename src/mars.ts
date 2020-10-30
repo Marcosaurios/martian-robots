@@ -1,4 +1,4 @@
-import readFile from './utils/file';
+import { readFile, writeFile } from './utils/file';
 // import drawMap from './utils/helper';
 import { MarsPosition, Movement, Orientation, Robot } from './types';
 import Controls from './controls';
@@ -158,5 +158,9 @@ export default class Mars {
       }
     }
     return output;
+  }
+
+  writeOutput(outputPath: string): void {
+    writeFile(this.getOutput(), outputPath);
   }
 }
