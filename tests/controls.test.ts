@@ -10,7 +10,14 @@ describe('controls: forward working as expected', () => {
       alive: true,
     };
 
-    expect(Controls.forward(pos)).toEqual({ x: 0, y: 1 });
+    const expected: MarsPosition = {
+      x: 0,
+      y: 1,
+      head: Orientation.N,
+      alive: true,
+    };
+
+    expect(Controls[Movement.F](pos)).toEqual(expected);
   });
   test('should move forward in East', () => {
     const pos: MarsPosition = {
@@ -20,7 +27,14 @@ describe('controls: forward working as expected', () => {
       alive: true,
     };
 
-    expect(Controls.forward(pos)).toEqual({ x: 1, y: 0 });
+    const expected: MarsPosition = {
+      x: 1,
+      y: 0,
+      head: Orientation.E,
+      alive: true,
+    };
+
+    expect(Controls[Movement.F](pos)).toEqual(expected);
   });
   test('should move forward in South', () => {
     const pos: MarsPosition = {
@@ -29,8 +43,14 @@ describe('controls: forward working as expected', () => {
       head: Orientation.S,
       alive: true,
     };
+    const expected: MarsPosition = {
+      x: 0,
+      y: -1,
+      head: Orientation.S,
+      alive: true,
+    };
 
-    expect(Controls.forward(pos)).toEqual({ x: 0, y: -1 });
+    expect(Controls[Movement.F](pos)).toEqual(expected);
   });
   test('should move forward in West', () => {
     const pos: MarsPosition = {
@@ -40,7 +60,14 @@ describe('controls: forward working as expected', () => {
       alive: true,
     };
 
-    expect(Controls.forward(pos)).toEqual({ x: -1, y: 0 });
+    const expected: MarsPosition = {
+      x: -1,
+      y: 0,
+      head: Orientation.W,
+      alive: true,
+    };
+
+    expect(Controls[Movement.F](pos)).toEqual(expected);
   });
 });
 
@@ -53,9 +80,14 @@ describe('controls: rotate R working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.E;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.E,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.R, pos)).toEqual(expected);
+    expect(Controls[Movement.R](pos)).toEqual(expected);
   });
   test('should orientation be S when E', () => {
     const pos: MarsPosition = {
@@ -65,9 +97,14 @@ describe('controls: rotate R working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.S;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.S,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.R, pos)).toEqual(expected);
+    expect(Controls[Movement.R](pos)).toEqual(expected);
   });
   test('should orientation be W when S', () => {
     const pos: MarsPosition = {
@@ -77,9 +114,14 @@ describe('controls: rotate R working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.W;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.W,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.R, pos)).toEqual(expected);
+    expect(Controls[Movement.R](pos)).toEqual(expected);
   });
   test('should orientation be N when W', () => {
     const pos: MarsPosition = {
@@ -88,10 +130,14 @@ describe('controls: rotate R working as expected', () => {
       head: Orientation.W,
       alive: true,
     };
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.N,
+      alive: true,
+    };
 
-    const expected = Orientation.N;
-
-    expect(Controls.rotate(Movement.R, pos)).toEqual(expected);
+    expect(Controls[Movement.R](pos)).toEqual(expected);
   });
 });
 
@@ -104,9 +150,14 @@ describe('controls: rotate L working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.W;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.W,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.L, pos)).toEqual(expected);
+    expect(Controls[Movement.L](pos)).toEqual(expected);
   });
   test('should orientation be S when W', () => {
     const pos: MarsPosition = {
@@ -116,9 +167,14 @@ describe('controls: rotate L working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.S;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.S,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.L, pos)).toEqual(expected);
+    expect(Controls[Movement.L](pos)).toEqual(expected);
   });
   test('should orientation be E when S', () => {
     const pos: MarsPosition = {
@@ -128,9 +184,14 @@ describe('controls: rotate L working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.E;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.E,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.L, pos)).toEqual(expected);
+    expect(Controls[Movement.L](pos)).toEqual(expected);
   });
   test('should orientation be N when E', () => {
     const pos: MarsPosition = {
@@ -140,8 +201,13 @@ describe('controls: rotate L working as expected', () => {
       alive: true,
     };
 
-    const expected = Orientation.N;
+    const expected: MarsPosition = {
+      x: 0,
+      y: 0,
+      head: Orientation.N,
+      alive: true,
+    };
 
-    expect(Controls.rotate(Movement.L, pos)).toEqual(expected);
+    expect(Controls[Movement.L](pos)).toEqual(expected);
   });
 });
