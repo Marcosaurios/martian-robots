@@ -24,6 +24,7 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "no-continue": "off"
   }
 }

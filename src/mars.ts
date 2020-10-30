@@ -57,7 +57,7 @@ export default class Mars {
 
       const robot: Robot = {
         initialPosition: position,
-        actualPosition: { ...position, alive: true },
+        actualPosition: { ...position },
         // cast every instruction movement to typed movement enum
         instructions: orders.map((e) => (<any>Movement)[e]),
       };
@@ -75,12 +75,50 @@ export default class Mars {
     // Origin is bottom-left, maxvalue is top-right
     return { y: this.y - coords.y, x: coords.x };
   }
-    return { y: this.y - y, x };
 
-  checkBoundings(x: number, y: number) {
+  startExploration() {
+    // Start reading robots
+    for (let i = 0; i < this.robots.length; i += 1) {
+      const robot = this.robots[i];
+      const startingPos = this.checkBoundings(robot.initialPosition);
+
+      // Invalid initial position
+      if (!startingPos) {
+        this.robots[i].actualPosition.alive = false;
+        continue;
+      }
+
+      // Start reading instructions
+      const { instructions } = robot;
+      for (let j = 0; j < instructions.length; j += 1) {
+        const move = instructions[j];
+        const gridPos = this.toMarsCoordinates({
+          x: robot.actualPosition.x,
+          y: robot.actualPosition.y,
+        });
+
+        // if robot is going to die
+        if (!this.checkBoundings(Controls[move](robot.actualPosition))) {
+          // if actual pos is an scent, skip movement
+          if (this.map[gridPos.y][gridPos.x] === 1) {
+            continue;
+          } else {
+            // robot is dead
+            this.robots[i] = this.killRobot(robot);
+            break;
+          }
+        } else {
+          // move normally
+          this.robots[i].actualPosition = Controls[move](robot.actualPosition);
+        }
+      }
+    }
+  }
+
+  checkBoundings(pos: MarsPosition): boolean {
     // checks if coords are valid, inside map
-    let value = true;
-    if (x > this.x || x < 0 || y < 0 || y > this.y) {
+    let value: boolean = true;
+    if (pos.x > this.x || pos.x < 0 || pos.y < 0 || pos.y > this.y) {
       value = false;
     }
 
