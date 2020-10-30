@@ -4,21 +4,13 @@ import Mars from './mars';
 
 function main() {
   // Sanitize input and output
-  const { input, output } = initCheck();
-
-  console.log('Input is ', input);
-  console.log('Output is ', output);
-
   // eslint-disable-next-line no-unused-vars
+  const { input /* , output */ } = initCheck();
+
   const planet = new Mars(input);
+  planet.startExploration();
 
-  console.log(planet);
-
-  // Initialize map
-
-  // logic
-
-  // output
+  console.log(planet.getOutput());
 }
 
 main();
