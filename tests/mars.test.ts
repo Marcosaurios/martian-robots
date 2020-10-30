@@ -92,4 +92,16 @@ describe('load input', () => {
       expect(mars.robots[i]).toEqual(expected[i]);
     }
   });
+
+  test('should give same output string as example', () => {
+    const mars = new Mars('input.txt');
+
+    mars.startExploration();
+
+    const expected = `1 1 E
+3 3 N LOST
+2 3 S`;
+
+    expect(mars.getOutput()).toEqual(expected);
+  });
 });
