@@ -1,24 +1,24 @@
 import { MarsPosition, Movement, Orientation } from './types';
 
 const Controls = {
-  forward(situation: MarsPosition): { x: number; y: number } {
-    const newCoords = { x: situation.x, y: situation.y };
+  [Movement.F]: (situation: MarsPosition): MarsPosition => {
+    const newPos = { ...situation };
 
-    switch (situation.head) {
+    switch (newPos.head) {
       case Orientation.N: {
-        newCoords.y += 1;
+        newPos.y += 1;
         break;
       }
       case Orientation.E: {
-        newCoords.x += 1;
+        newPos.x += 1;
         break;
       }
       case Orientation.S: {
-        newCoords.y -= 1;
+        newPos.y -= 1;
         break;
       }
       case Orientation.W: {
-        newCoords.x -= 1;
+        newPos.x -= 1;
         break;
       }
       default: {
@@ -26,9 +26,9 @@ const Controls = {
       }
     }
 
-    return newCoords;
+    return newPos;
   },
-  rotate(rotation: Movement.R | Movement.L, situation: MarsPosition) {
+  [Movement.L]: (situation: MarsPosition): MarsPosition => {
     const headings = [
       Orientation.N,
       Orientation.E,
@@ -36,28 +36,34 @@ const Controls = {
       Orientation.W,
     ];
 
-    let actualHead = headings.indexOf(situation.head);
+    const newPos = { ...situation };
 
-    switch (rotation) {
-      case Movement.R: {
-        actualHead += 1;
-        break;
-      }
-      case Movement.L: {
-        actualHead -= 1;
-        if (actualHead < 0) {
-          actualHead = 3;
-        }
-        break;
-      }
-      default: {
-        break;
-      }
+    let actualHead = headings.indexOf(newPos.head);
+    actualHead -= 1;
+    if (actualHead < 0) {
+      actualHead = 3;
     }
 
-    const finalHead = headings[actualHead % 4];
+    newPos.head = headings[actualHead % 4];
 
-    return finalHead;
+    return newPos;
+  },
+  [Movement.R]: (situation: MarsPosition): MarsPosition => {
+    const headings = [
+      Orientation.N,
+      Orientation.E,
+      Orientation.S,
+      Orientation.W,
+    ];
+
+    const newPos = { ...situation };
+
+    let actualHead = headings.indexOf(newPos.head);
+    actualHead += 1;
+
+    newPos.head = headings[actualHead % 4];
+
+    return newPos;
   },
   // future implementations
 };
