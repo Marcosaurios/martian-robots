@@ -1,4 +1,4 @@
-import { readFile, writeFile } from './utils/file';
+import { writeFile } from './utils/file';
 // import drawMap from './utils/helper';
 import { MarsPosition, Movement, Orientation, Robot } from './types';
 import Controls from './controls';
@@ -17,10 +17,8 @@ export default class Mars {
   robots: Robot[];
 
   constructor(input: string) {
-    const file: string = readFile(input);
-
-    // Parse instructions from file
-    const instructions = file.split('\n');
+    // Parse instructions from fileContent
+    const instructions = input.split('\n');
 
     // Read and store instructions
     this.loadMap(instructions.shift());
