@@ -4,7 +4,8 @@ import Mars from '../src/mars';
 
 describe('startExploration with example files', () => {
   test('example given should be expected', () => {
-    const mars = new Mars('examples/ex1_input.txt');
+    const input = readFile('examples/ex1_input.txt');
+    const mars = new Mars(input);
     mars.startExploration();
 
     // drawMap(mars.map);
@@ -13,7 +14,8 @@ describe('startExploration with example files', () => {
     expect(mars.getOutput()).toBe(expected);
   });
   test('example 2 should be expected', () => {
-    const mars = new Mars('examples/ex2_input.txt');
+    const input = readFile('examples/ex2_input.txt');
+    const mars = new Mars(input);
     mars.startExploration();
 
     // drawMap(mars.map);
@@ -22,7 +24,8 @@ describe('startExploration with example files', () => {
     expect(mars.getOutput()).toBe(expected);
   });
   test('example 3 should be expected', () => {
-    const mars = new Mars('examples/ex3_input.txt');
+    const input = readFile('examples/ex3_input.txt');
+    const mars = new Mars(input);
     mars.startExploration();
 
     // drawMap(mars.map);

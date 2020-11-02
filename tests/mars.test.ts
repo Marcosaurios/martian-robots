@@ -1,9 +1,11 @@
 import Mars from '../src/mars';
 import { Robot } from '../src/types';
+import { readFile } from '../src/utils/file';
 
 describe('load input', () => {
   test('should load map without errors and as expected', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
 
     const expected = [
       [0, 0, 0, 0, 0, 0],
@@ -18,7 +20,8 @@ describe('load input', () => {
   });
 
   test('should cast robots without errors and as expected', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
 
     const robots: Robot[] = [
       {
@@ -48,7 +51,8 @@ describe('load input', () => {
   });
 
   test('should use bottom-left as origin coordinates', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     expect(mars.x).toEqual(5);
     expect(mars.y).toEqual(3);
 
@@ -66,7 +70,8 @@ describe('load input', () => {
   });
 
   test('should explore example as expected', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
 
     mars.startExploration();
 
@@ -94,7 +99,8 @@ describe('load input', () => {
   });
 
   test('should give same output string as example', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
 
     mars.startExploration();
 

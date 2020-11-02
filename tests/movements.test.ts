@@ -1,10 +1,12 @@
 import Controls from '../src/controls';
 import Mars from '../src/mars';
 import { MarsPosition, Movement, Orientation, Robot } from '../src/types';
+import { readFile } from '../src/utils/file';
 
 describe('movements: should check next invalid movement successfuly', () => {
   test('checkBoundings invalid next position top-right', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const move: Movement = Movement.F;
@@ -18,7 +20,8 @@ describe('movements: should check next invalid movement successfuly', () => {
     expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
   });
   test('checkBoundings invalid next position top-left', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const move: Movement = Movement.F;
@@ -32,7 +35,8 @@ describe('movements: should check next invalid movement successfuly', () => {
     expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
   });
   test('checkBoundings invalid next position bottom-left', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const move: Movement = Movement.F;
@@ -46,7 +50,8 @@ describe('movements: should check next invalid movement successfuly', () => {
     expect(mars.checkBoundings(Controls[move](actualPosition))).toEqual(false);
   });
   test('checkBoundings invalid next position bottom-right', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const move: Movement = Movement.F;
@@ -63,7 +68,8 @@ describe('movements: should check next invalid movement successfuly', () => {
 
 describe('movements: should check next valid movement successfuly', () => {
   test('checkBoundings valid next position bottom-left', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const move: Movement = Movement.F;
@@ -80,7 +86,8 @@ describe('movements: should check next valid movement successfuly', () => {
 
 describe('movements: killRobot should kill the robot', () => {
   test('should be killed when moving out of bounds 0,0,S move F', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const robot: Robot = {
@@ -118,7 +125,8 @@ describe('movements: killRobot should kill the robot', () => {
     expect(mars.killRobot(robot)).toEqual(expected);
   });
   test('should be killed when moving out of bounds 0,0,S move F', () => {
-    const mars = new Mars('input.txt');
+    const input = readFile('input.txt');
+    const mars = new Mars(input);
     // size of 5,3
 
     const robot: Robot = {
