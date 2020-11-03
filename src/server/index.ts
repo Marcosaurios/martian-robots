@@ -12,6 +12,7 @@ app.use(express.static(`${__dirname}/static`));
 
 app.post('/explore', explore);
 
-app.listen(3001, () => {
-  console.log('Running server on port 3001');
+const server = app.listen(process.env.PORT || 8080, () => {
+  // eslint-disable-next-line prefer-destructuring
+  console.log('App now running on port', server.address());
 });
