@@ -1,9 +1,9 @@
 FROM node:14-alpine
 WORKDIR /martian-robots
 COPY  package*.json ./
-RUN npm install
+RUN npm install --only=prod
 COPY . .
 RUN npm run build
 EXPOSE 3001
 
-CMD ["node", "build/server/index.js"]
+CMD ["npm", "run", "serve"]

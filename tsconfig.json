@@ -5,13 +5,15 @@
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "lib": ["dom", "esnext", "es2020"],
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
     "outDir": "build",
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["node", "args", "express", "express-fileupload", "body-parser"]
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
