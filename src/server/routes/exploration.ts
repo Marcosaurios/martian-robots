@@ -1,6 +1,12 @@
 import express from 'express';
 import Mars from '../../mars';
 
+/**
+ * Process a map and its robots in Mars
+ * @param {express.Request} req Request object
+ * @param {express.Response} res object, which will be returned with the exploration result
+ */
+/** */
 function explore(
   req: express.Request,
   res: express.Response,

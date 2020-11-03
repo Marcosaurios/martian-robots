@@ -3,28 +3,56 @@ import { writeFile } from './utils/file';
 import { MarsPosition, Movement, Orientation, Robot } from './types';
 import Controls from './controls';
 
+/**
+ * Class to handle any Mars exploration.
+ * @class Mars
+ */
 export default class Mars {
-  // Saving map in format Y,X coordinates
+  /**
+   * Where the map is saved, with the robot's scents. To store anything inside it's in format [Y][X] coordinates.
+   * @type {number[][]}
+   * @public
+   */
   map: number[][];
 
-  // X size in 0 index
+  /**
+   * X size of the map, in 0 index. Same value as given in the input file.
+   * @type {number}
+   * @public
+   */
   x: number;
 
-  // Y size in 0 index
+  /**
+   * Y size of the map, in 0 index. Same value as given in the input file.
+   * @type {number}
+   * @public
+   */
   y: number;
 
-  // Input stored robots
+  /**
+   * Robots of the actual map, given in the input.
+   * @type {Robot[]}
+   * @public
+   */
   robots: Robot[];
 
+  /**
+   * @constructor
+   * @param {string} input Should contain the file content (map information, robots and its instructions).
+   */
   constructor(input: string) {
-    // Parse instructions from fileContent
+    // Parse instructions from file content
     const instructions = input.split('\n');
 
-    // Read and store instructions
     this.loadMap(instructions.shift());
     this.loadRobots(instructions);
   }
 
+  /**
+   * Loads map data from the input inside our class.
+   * @param {string} firstLine Defines the map size.
+   * @public
+   */
   loadMap(firstLine: string): void {
     const mapSize: string[] = firstLine.split(' ');
     this.x = parseInt(mapSize[0], 10);
@@ -37,6 +65,11 @@ export default class Mars {
     this.map = map;
   }
 
+  /**
+   * Loads robots data from the input inside our class.
+   * @param instructions Defines the robots and its instructions, separated line by line.
+   * @public
+   */
   loadRobots(instructions: string[]): void {
     let iterator = instructions;
     this.robots = [];
@@ -65,7 +98,11 @@ export default class Mars {
     }
   }
 
-  // introduce desired Mars coords, I will save it in my map as toMarsCoords
+  /**
+   * Converts the desired Mars coordinates, to our map.
+   * @param { x: number, y: number} coords Desired Mars coordinates
+   * @public
+   */
   toMarsCoordinates(coords: {
     x: number;
     y: number;
@@ -74,7 +111,11 @@ export default class Mars {
     return { y: this.y - coords.y, x: coords.x };
   }
 
-  startExploration() {
+  /**
+   * Executes exploration once map and robots are loaded.
+   * @public
+   */
+  startExploration(): void {
     // Start reading robots
     for (let i = 0; i < this.robots.length; i += 1) {
       const robot = this.robots[i];
@@ -113,6 +154,11 @@ export default class Mars {
     }
   }
 
+  /**
+   * Compares position against map limits to verify boundings.
+   * @param {MarsPosition} pos Position to check
+   * @public
+   */
   checkBoundings(pos: MarsPosition): boolean {
     // checks if coords are valid, inside map
     let value: boolean = true;
@@ -123,6 +169,11 @@ export default class Mars {
     return value;
   }
 
+  /**
+   * Kills the given robot, and marks last position as a scent in the map.
+   * @param {Robot} robot Robot to kill
+   * @public
+   */
   killRobot(robot: Robot): Robot {
     // create deep copy
     const deadRobot: Robot = {
@@ -144,8 +195,12 @@ export default class Mars {
     return deadRobot;
   }
 
+  /**
+   * Returns the exploration result in a string.
+   * @public
+   */
   getOutput(): string {
-    let output = '';
+    let output: string = '';
     for (let i = 0; i < this.robots.length; i += 1) {
       const robot = this.robots[i].actualPosition;
       output += `${robot.x} ${robot.y} ${Orientation[robot.head]}${
@@ -158,6 +213,10 @@ export default class Mars {
     return output;
   }
 
+  /**
+   * Writes a file with the exploration result inside, in the given output.
+   * @param outputPath Path to write the file.
+   */
   writeOutput(outputPath: string): void {
     writeFile(this.getOutput(), outputPath);
   }

@@ -13,6 +13,9 @@ enum Movement {
   L,
 }
 
+/**
+ * Position in mars definition
+ */
 interface MarsPosition {
   x: number;
   y: number;
@@ -20,6 +23,9 @@ interface MarsPosition {
   alive: boolean;
 }
 
+/**
+ * Robot definition
+ */
 interface Robot {
   initialPosition: MarsPosition;
   actualPosition: MarsPosition;
