@@ -22,7 +22,7 @@ jobs:
     steps:
       - run: npm install --only-prod
       - persist_to_workspace:
-          root: workspace
+          root: .
           paths:
             - ./
   build-docker:
@@ -64,10 +64,14 @@ workflows:
             branches:
               only: dev
       - build-node:
+          requires:
+            - test
           filters:
             branches:
               only: dev
       - build-docker:
+          requires:
+            - build-node
           filters:
             branches:
               only: dev
