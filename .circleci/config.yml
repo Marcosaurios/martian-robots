@@ -32,8 +32,6 @@ jobs:
       - setup_remote_docker
       - attach_workspace:
           at: ~/
-      - run: pwd
-      - run: ls -la
       - run:
           name: Build Docker image
           command: |
@@ -63,7 +61,13 @@ jobs:
 workflows:
   deploy:
     jobs:
+      - test:
+          filters:
+            branches:
+              only: dev
       - build-node:
+          requires:
+            - test
           filters:
             branches:
               only: dev
