@@ -13,7 +13,14 @@
     "removeComments": false,
     "outDir": "build",
     "sourceMap": true,
-    "types": ["node", "args", "express", "express-fileupload", "body-parser"]
+    "types": [
+      "node",
+      "args",
+      "express",
+      "express-fileupload",
+      "body-parser",
+      "jest"
+    ]
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
