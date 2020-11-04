@@ -7,7 +7,7 @@ executors:
       - image: circleci/buildpack-deps:stretch
   node:
     docker:
-      - image: circleci/node:14-browsers
+      - image: circleci/node:12-browsers
 orbs:
   node: circleci/node@3.0.0
 jobs:
