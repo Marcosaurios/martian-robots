@@ -8,12 +8,16 @@ executors:
 orbs:
   node: circleci/node@3.0.0
 jobs:
-  build:
-    executor: docker-publisher
+  test:
+    docker:
+      - image: circleci/node:14-browsers
     steps:
       - checkout
       - run: npm install
       - run: npm run test
+  build:
+    executor: docker-publisher
+    steps:
       - setup_remote_docker
       - run:
           name: Build Docker image
