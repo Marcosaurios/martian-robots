@@ -20,6 +20,7 @@ jobs:
   build-node:
     executor: node
     steps:
+      - checkout
       - run: npm install --only-prod
       - run: pwd
       - run: ls -la
