@@ -13,7 +13,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - node/test
       - run:
           name: Build Docker image
           command: |
@@ -41,6 +40,8 @@ jobs:
             docker push $IMAGE_NAME:latest
 workflows:
   node-tests:
+    - node/test
+  deploy:
     jobs:
       - build:
           filters:
