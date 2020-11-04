@@ -64,22 +64,22 @@ workflows:
       - test:
           filters:
             branches:
-              only: dev
+              only: main
       - build-node:
           requires:
             - test
           filters:
             branches:
-              only: dev
+              only: main
       - build-docker:
           requires:
             - build-node
           filters:
             branches:
-              only: dev
+              only: main
       - publish-latest:
           requires:
             - build-docker
           filters:
             branches:
-              only: dev
+              only: main
