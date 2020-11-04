@@ -18,6 +18,7 @@ jobs:
   build:
     executor: docker-publisher
     steps:
+      - run: npm install --only-prod
       - setup_remote_docker
       - run:
           name: Build Docker image
@@ -47,6 +48,10 @@ jobs:
 workflows:
   deploy:
     jobs:
+      - test:
+          filters:
+            branches:
+              only: dev
       - build:
           filters:
             branches:
