@@ -21,6 +21,7 @@ jobs:
     executor: node
     steps:
       - run: npm install --only-prod
+      - run: pwd
       - persist_to_workspace:
           root: .
           paths:
