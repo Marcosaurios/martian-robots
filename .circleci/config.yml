@@ -12,6 +12,8 @@ jobs:
     executor: docker-publisher
     steps:
       - checkout
+      - run: npm install
+      - run: npm run test
       - setup_remote_docker
       - run:
           name: Build Docker image
@@ -39,8 +41,6 @@ jobs:
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:latest
 workflows:
-  node-tests:
-    - node/test
   deploy:
     jobs:
       - build:
