@@ -58,6 +58,16 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME
+      - run:
+          name: Notify Docker to build new uploaded image
+          command: |
+            curl --location --request POST 'https://hub.docker.com/api/build/v1/source/632f8efe-10fe-4246-8d12-e5dfaf84cbde/trigger/3e9b8101-3b57-4cd1-8ccf-9728f4729a34/call/' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+                "build": true,
+                "source_type": "Branch",
+                "source_name": "main"
+            }'
 workflows:
   deploy:
     jobs:
