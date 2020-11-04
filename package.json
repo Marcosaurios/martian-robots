@@ -38,6 +38,7 @@
   },
   "scripts": {
     "serve": "node build/server/index.js",
+    "dev": "npm run build && nodemon build/server/index.js",
     "build": "tsc && copyfiles -u 1 src/server/static/**/*.{html,css,js} build/",
     "start": "npm run build && node $npm_package_main --in input.txt --out output.txt",
     "check": "npm run build && node $npm_package_main --in $npm_config_in --out $npm_config_out",

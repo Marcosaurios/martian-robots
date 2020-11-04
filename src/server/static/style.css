@@ -1,0 +1,45 @@
+* {
+  font-family: Roboto;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.container div {
+  padding: 1em;
+  margin: 0 auto;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: whitesmoke;
+}
+
+.container div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+}
+
+
+.code {
+  font-family: SFMono-Regular,
+  Consolas,
+  Liberation Mono,
+  Menlo,
+  monospace;
+padding: 16px;
+overflow: auto;
+font-size: 85%;
+line-height: 1.45;
+background-color: #f6f8fa;
+border-radius: 6px;
+}

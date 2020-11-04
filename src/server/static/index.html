@@ -4,14 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martian robots</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
 </head>
 <body>
-  <p>API exposed</p>
-  <h3>Endpoints</h3>
+  <h3>API Endpoints exposed:</h3>
   <ul>
     <li>
-        /explore
+      <p> <strong>POST</strong> /explore </p>
+      <p>Request example: 
+        <pre class="code">
+var formdata = new FormData();
+formdata.append("file", fileInput.files[0], "input.txt");
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("https://marcosaurios-martian-robots.herokuapp.com/explore", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));</pre>
+        </p>
     </li>
   </ul>
+
+<div class="container">
+  <div>
+    <h3>Input</h3>
+    <textarea type="text" id="user_input" name="MarsMap" rows="7" cols="10">
+5 3
+1 1 E
+FFFFF</textarea>
+  </div>
+  
+  <div>
+    <button onclick="explore()">Explore!</button>
+  </div>
+  
+  <div>
+    <h3>Output</h3>
+    <pre id="user_output">
+5 1 E LOST
+    </pre>
+  </div>
+
+</div>
+
 </body>
 </html>
