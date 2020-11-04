@@ -5,21 +5,32 @@ executors:
       IMAGE_NAME: martian-robots-local
     docker:
       - image: circleci/buildpack-deps:stretch
+  node:
+    docker:
+      - image: circleci/node:14-browsers
 orbs:
   node: circleci/node@3.0.0
 jobs:
   test:
-    docker:
-      - image: circleci/node:14-browsers
+    executor: node
     steps:
       - checkout
       - run: npm install
       - run: npm run test
-  build:
-    executor: docker-publisher
+  build-node:
+    executor: node
     steps:
       - run: npm install --only-prod
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - ./
+  build-docker:
+    executor: docker-publisher
+    steps:
       - setup_remote_docker
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Build Docker image
           command: |
@@ -52,13 +63,17 @@ workflows:
           filters:
             branches:
               only: dev
-      - build:
+      - build-node:
+          filters:
+            branches:
+              only: dev
+      - build-docker:
           filters:
             branches:
               only: dev
       - publish-latest:
           requires:
-            - build
+            - build-docker
           filters:
             branches:
               only: dev
