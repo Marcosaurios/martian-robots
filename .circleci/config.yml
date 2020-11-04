@@ -31,7 +31,7 @@ jobs:
     steps:
       - setup_remote_docker
       - attach_workspace:
-          at: ~/project
+          at: ~/
       - run: pwd
       - run: ls -la
       - run:
